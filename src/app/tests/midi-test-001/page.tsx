@@ -1,4 +1,3 @@
-// Use "use client" for SSR frameworks like Next.js to ensure this component runs in the client.
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -16,6 +15,15 @@ const Home: React.FC = () => {
 
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key.toLowerCase() === 'l') {
+        playSound();
+      }
+    };
+
+    const handleMIDIMessage = (message: WebMidi.MIDIMessageEvent) => {
+      const [command, note, velocity] = message.data;
+
+      // MIDI note on message for middle C (60) with velocity > 0 (note pressed)
+      if (command === 144 && note === 60 && velocity > 0) {
         playSound();
       }
     };
@@ -48,15 +56,6 @@ const Home: React.FC = () => {
     }
   };
 
-  const handleMIDIMessage = (message: WebMidi.MIDIMessageEvent) => {
-    const [command, note, velocity] = message.data;
-
-    // MIDI note on message for middle C (60) with velocity > 0 (note pressed)
-    if (command === 144 && note === 60 && velocity > 0) {
-      playSound();
-    }
-  };
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <style>{spinningCubeAnimationStyles}</style>
@@ -70,6 +69,6 @@ const Home: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

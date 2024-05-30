@@ -11,7 +11,7 @@ export default function Home() {
   // Removed isPlaying state as we directly play sound and manage animation now.
 
   useEffect(() => {
-    const handleKeyPress = (event) => {
+    const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key.toLowerCase() === 'l') { // Simplified key check
         playSound();
         // Here you can manage your animation to restart it or to keep it ongoing.

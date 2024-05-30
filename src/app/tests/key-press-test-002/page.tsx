@@ -9,13 +9,13 @@ const spinningCubeAnimationStyles = `
 
 export default function Home() {
   // Create a ref for the audio element
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     // Initialize the Audio object and assign it to the ref
     audioRef.current = new Audio("/sounds/bane_your_punishment.m4a");
 
-    const handleKeyPress = (event) => {
+    const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key.toLowerCase() === 'l') { 
         playSound();
       }
